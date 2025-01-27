@@ -1,14 +1,14 @@
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-import { Form, FormField, FormItem, FormControl } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { motion, AnimatePresence } from "framer-motion";
-import { themeConfig } from "@/conf/themeConfig";
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
+import { Form, FormField, FormItem, FormControl } from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { motion, AnimatePresence } from 'framer-motion';
+import { landingTheme } from '@/conf/landingConfig';
 
 const formSchema = z.object({
-  email: z.string().email("Please enter a valid email address"),
+  email: z.string().email('Please enter a valid email address'),
 });
 
 type FormData = z.infer<typeof formSchema>;
@@ -32,44 +32,42 @@ export const Waitlist = ({
   errorMessage,
   existingEmailMessage,
   notificationDuration = 3000,
-  emailFontSize = themeConfig.fontSizes.emailInput,
+  emailFontSize = landingTheme.fontSizes.emailInput,
 }: WaitlistProps) => {
-  const [status, setStatus] = useState<
-    "idle" | "loading" | "success" | "error"
-  >("idle");
-  const [message, setMessage] = useState("");
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [message, setMessage] = useState('');
 
   const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
-    defaultValues: { email: "" },
+    defaultValues: { email: '' },
   });
 
   const onSubmit = async (data: FormData) => {
-    setStatus("loading");
+    setStatus('loading');
     try {
-      const response = await fetch("/api/waitlist", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+      const response = await fetch('/api/waitlist', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
       });
 
       if (response.status === 409) {
-        setStatus("error");
+        setStatus('error');
         setMessage(existingEmailMessage);
       } else if (!response.ok) {
-        throw new Error("Failed to join waitlist");
+        throw new Error('Failed to join waitlist');
       } else {
-        setStatus("success");
+        setStatus('success');
         setMessage(successMessage);
         form.reset();
       }
     } catch {
-      setStatus("error");
+      setStatus('error');
       setMessage(errorMessage);
     } finally {
       setTimeout(() => {
-        setStatus("idle");
-        setMessage("");
+        setStatus('idle');
+        setMessage('');
       }, notificationDuration);
     }
   };
@@ -91,9 +89,9 @@ export const Waitlist = ({
                     {...field}
                     type="email"
                     placeholder={placeholder}
-                    className="w-full px-4 py-3 rounded-lg bg-white/[0.03] border border-white/10 text-white placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-[#5bc0be]/50"
+                    className="w-full h-[48px] px-4 py-3 rounded-lg bg-white/[0.03] border border-white/10 text-white placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-[#5bc0be]/50 backdrop-blur-[2px]"
                     style={{ fontSize: emailFontSize }}
-                    disabled={status === "loading"}
+                    disabled={status === 'loading'}
                   />
                 </FormControl>
               </FormItem>
@@ -101,18 +99,18 @@ export const Waitlist = ({
           />
           <motion.button
             type="submit"
-            disabled={status === "loading"}
+            disabled={status === 'loading'}
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            className={`px-6 py-3 bg-[#5bc0be] hover:bg-[#4ca8a6] text-white rounded-lg font-medium transition-colors disabled:opacity-50`}
+            className={`h-[48px] px-6 bg-[#5bc0be] hover:bg-[#4ca8a6] text-white rounded-lg font-medium transition-colors disabled:opacity-50`}
           >
-            {status === "loading" ? loadingText : buttonText}
+            {status === 'loading' ? loadingText : buttonText}
           </motion.button>
         </form>
       </Form>
 
       <AnimatePresence mode="wait">
-        {(status === "success" || status === "error") && (
+        {(status === 'success' || status === 'error') && (
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -122,9 +120,9 @@ export const Waitlist = ({
               ease: [0.4, 0, 0.2, 1],
             }}
             className={`absolute -bottom-16 left-1/2 transform -translate-x-1/2 px-6 py-3 rounded-lg backdrop-blur-xl ${
-              status === "success"
-                ? "bg-[#5bc0be]/10 text-[#5bc0be] border border-[#5bc0be]/20"
-                : "bg-red-500/10 text-red-200 border border-red-500/20"
+              status === 'success'
+                ? 'bg-[#5bc0be]/10 text-[#5bc0be] border border-[#5bc0be]/20'
+                : 'bg-red-500/10 text-red-200 border border-red-500/20'
             }`}
           >
             {message}
