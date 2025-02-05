@@ -60,13 +60,13 @@ export const landingTheme = {
     },
   },
   fontSizes: {
-    headline: '32px',
-    subheader: '24px',
+    headline: '42px',
+    subheader: '20px',
     featuresHeader: '32px',
     featureTitle: '24px',
     featureDescription: '16px',
-    whyHeader: '32px',
-    emailInput: '16px',
+    whyHeader: '28px',
+    emailInput: '14px',
   },
 };
 
@@ -89,5 +89,5 @@ export const particleConf = {
 };
 
 export const backgroundConf = {
-  gradientColors: ['from-[#0b132b]', 'via-[#1c2541]', 'to-[#3a506b]'],
+  baseColor: '#030f1c',
 };

@@ -11,11 +11,17 @@ export const Features = () => {
   const { features } = landingCopy;
   const containerRef = useRef<HTMLDivElement>(null);
 
+  const headerStyle = {
+    fontSize: landingTheme.fontSizes.featuresHeader,
+    lineHeight: '1.2',
+    letterSpacing: '-2.2px',
+  };
+
   return (
     <section ref={containerRef}>
       <motion.h2
-        style={{ fontSize: landingTheme.fontSizes.featuresHeader }}
-        className="text-4xl font-bold text-white text-center mb-16"
+        style={headerStyle}
+        className="font-twk font-normal tracking-tight text-white text-center mb-16"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-100px' }}
@@ -40,7 +46,7 @@ export const Features = () => {
                 ease: [0.21, 1.11, 0.81, 0.99],
               }}
             >
-              <Card className="bg-white/[0.03] backdrop-blur-[2px] border-white/[0.05] hover:bg-white/[0.05] transition-all duration-300 transform hover:-translate-y-1">
+              <Card className="bg-white/[0.005] backdrop-blur-[0.5px] border border-white/[0.01] hover:bg-white/[0.02] transition-all duration-300 transform hover:-translate-y-1">
                 <CardHeader>
                   <motion.div
                     className="flex items-center justify-center bg-[#5bc0be]/10 w-16 h-16 rounded-2xl mx-auto"
@@ -50,18 +56,22 @@ export const Features = () => {
                     <Icon className="w-8 h-8 text-[#5bc0be]" />
                   </motion.div>
                   <h3
-                    style={{ fontSize: landingTheme.fontSizes.featureTitle }}
-                    className="font-semibold text-center text-white mt-6"
+                    className="font-twk font-normal text-white mt-6 text-center"
+                    style={{
+                      fontSize: landingTheme.fontSizes.featureTitle,
+                      letterSpacing: '-1px',
+                    }}
                   >
                     {feature.title}
                   </h3>
                 </CardHeader>
                 <CardContent>
                   <p
+                    className="font-twk font-normal text-white/80 text-center"
                     style={{
-                      fontSize: landingTheme.fontSizes.featureDescription,
+                      fontSize: '18px',
+                      lineHeight: '28px',
                     }}
-                    className="text-gray-300 text-center leading-relaxed"
                   >
                     {feature.description}
                   </p>

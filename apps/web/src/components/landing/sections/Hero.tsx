@@ -6,20 +6,30 @@ export const Hero = () => {
   const { hero, waitlist } = landingCopy;
   const { fontSizes } = landingTheme;
 
+  const headlineStyle = {
+    fontSize: '42px',
+    lineHeight: '42px',
+    height: '42px',
+    letterSpacing: '-2.2px',
+  };
+
   return (
     <section className="flex flex-col justify-center items-center min-h-screen text-center space-y-16">
       <motion.h1
-        className="text-4xl sm:text-6xl font-extrabold text-white leading-tight"
+        className="font-twk font-normal tracking-tight-2.88 text-white"
+        style={headlineStyle}
         initial={{ y: -50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5 }}
       >
         {hero.headline1}
-        <span className="block">{hero.headline2}</span>
+        <span className="block" style={headlineStyle}>
+          {hero.headline2}
+        </span>
       </motion.h1>
       <motion.p
-        className="text-xl text-white/80 max-w-2xl mx-auto"
-        style={{ fontSize: fontSizes.subheader }}
+        className="font-twk text-white/80 max-w-2xl mx-auto"
+        style={{ fontSize: '24px', lineHeight: '32px' }}
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.2 }}
