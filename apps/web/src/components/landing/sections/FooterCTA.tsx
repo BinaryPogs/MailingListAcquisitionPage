@@ -6,10 +6,10 @@ export const FooterCTA = ({ onScrollToTop }: { onScrollToTop: () => void }) => {
 
   return (
     <div className="text-center py-12 pb-32">
-      <p className="text-lg text-gray-200 mb-6">
-        <i>{footerCta.text}</i>
-      </p>
-      <Button onClick={onScrollToTop}>{footerCta.button}</Button>
+      <p className="font-twk text-lg text-gray-200 mb-6 tracking-tight">{footerCta.text}</p>
+      <Button onClick={onScrollToTop} className="font-twk">
+        {footerCta.button}
+      </Button>
     </div>
   );
 };

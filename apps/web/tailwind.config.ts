@@ -40,13 +40,17 @@ const config: Config = {
         'accordion-up': 'accordion-up 0.2s ease-out',
       },
       fontFamily: {
-        sans: ['Poppins', 'sans-serif'],
+        sans: ['TWK Everett', 'sans-serif'],
+      },
+      letterSpacing: {
+        'tight-2.88': '-2.88px',
       },
       borderRadius: {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)',
       },
+
       colors: {
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
